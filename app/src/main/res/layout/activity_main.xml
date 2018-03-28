@@ -8,16 +8,16 @@
         android:layout_height="wrap_content"
         android:layout_x="25dp"
         android:layout_y="25dp"
-        android:text="Добавить X"
+        android:text="Отправить запрос"
         android:onClick="buttonFirstClick"/>
 
     <TextView
         android:id="@+id/textview_1"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_x="30dp"
         android:layout_y="100dp"
         android:textSize="20dp"
-        android:text="Content: " />
+        android:text="Содержимое ответа" />
 
 </AbsoluteLayout>

@@ -1,8 +1,7 @@
 package com.app.maxim.mytest;
 
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,16 +13,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void buttonFirstClick(View view) {
-        final TextView field = (TextView) findViewById(R.id.textview_1);
+    private final QuerySender.OnRequestCompleteListener listener = new QuerySender.OnRequestCompleteListener() {
+        @Override
+        public void onRequestComplete(final String body) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    TextView field = (TextView) findViewById(R.id.textview_1);
+                    field.setText(body);
+                }
+            });
+        }
+    };
 
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                String s = field.getText().toString();
-                s += " X ";
-                field.setText(s);
-            }
-        });
+    public void buttonFirstClick(View view) {
+        QuerySender.getInstance().get("https://api-news-nin1.herokuapp.com/", listener);
     }
+
 }
